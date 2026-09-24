@@ -15,7 +15,7 @@ interface TestData {
   result: Task | Task[];
 }
 
-const exposeParsersScript = fs.readFileSync(path.resolve(__dirname, '../build-test/expose-parsers.js'), {
+const exposeParsersScript = fs.readFileSync(path.resolve(import.meta.dirname, '../build-test/expose-parsers.js'), {
   encoding: 'utf-8',
 });
 
@@ -118,12 +118,12 @@ afterAll(async () => {
   await browser.close();
 });
 
-for (const website of fs.readdirSync(path.resolve(__dirname, 'data'))) {
-  for (const category of fs.readdirSync(path.resolve(__dirname, 'data', website))) {
-    for (const file of fs.readdirSync(path.resolve(__dirname, 'data', website, category))) {
+for (const website of fs.readdirSync(path.resolve(import.meta.dirname, 'data'))) {
+  for (const category of fs.readdirSync(path.resolve(import.meta.dirname, 'data', website))) {
+    for (const file of fs.readdirSync(path.resolve(import.meta.dirname, 'data', website, category))) {
       const testName = `${website}/${category}/${file.substring(0, file.length - 5)}`;
 
-      const filePath = path.resolve(__dirname, 'data', website, category, file);
+      const filePath = path.resolve(import.meta.dirname, 'data', website, category, file);
       const data = JSON.parse(fs.readFileSync(filePath, { encoding: 'utf-8' }));
 
       test.concurrent(testName, () => runTest(pagePool, data));

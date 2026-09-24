@@ -286,8 +286,6 @@ pnpm dev:firefox
 ## Testing
 To run the tests, use `pnpm test`, or `pnpm test:no-headless` to run tests with the Chrome instance visible. Append `-- -t <pattern>` to the command to only run tests with names matching the given pattern.
 
-Run `pnpm test:jungol` for the JUNGOL parser's offline contract tests. Set `PUPPETEER_EXECUTABLE_PATH` if using an existing Chromium installation.
-
 ## Mozilla reviewers
 The information provided below is meant for Mozilla volunteers.
 

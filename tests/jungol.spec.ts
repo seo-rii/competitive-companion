@@ -1,5 +1,3 @@
-/// <reference types="jest" />
-
 import * as fs from 'node:fs';
 import { Browser, launch, Page } from 'puppeteer';
 import { Task } from '../src/models/Task';
@@ -36,7 +34,7 @@ let browser: Browser;
 let page: Page;
 
 beforeAll(async () => {
-  browser = await launch({ headless: true });
+  browser = await launch({ headless: process.env.HEADLESS !== 'false' });
   page = await browser.newPage();
   await page.evaluate(exposeParsersScript);
 });
