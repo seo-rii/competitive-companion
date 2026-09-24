@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import * as fs from 'node:fs';
 import { Browser, launch, Page } from 'puppeteer';
 import { Task } from '../src/models/Task';
