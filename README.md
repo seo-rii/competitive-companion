@@ -164,11 +164,6 @@ A browser extension which parses competitive programming problems from various o
 | ZOJ                        | ✔              |                |
 | ZUFEOJ                     | ✔              | ✔              |
 
-### JUNGOL
-The JUNGOL parser reads the versioned problem data embedded by the site. It supports eligible standard-input/standard-output problems, including individual problems in contests, lectures, and books, localized pages, and dedicated JUNGOL subdomains. Open the problem and wait for it to finish loading before using the extension.
-
-If the page does not provide export data, the parser reports an error. It does not fetch hidden data or fall back to scraping restricted problems. Importing samples does not reproduce the site's full judge, and importing an entire contest is not supported.
-
 ## Custom tools
 Competitive Companion can send the parsed data in JSON format to your own tools. To do this, start an HTTP server listening for POST requests to / on any of the ports listed in [`./src/hosts/hosts.ts`](./src/hosts/hosts.ts). An example on how to accomplish this can be found in [jmerle/competitive-companion-example](https://github.com/jmerle/competitive-companion-example).
 
