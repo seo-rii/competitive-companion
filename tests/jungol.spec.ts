@@ -106,6 +106,31 @@ test('preserves sample whitespace, empty samples and literal markup', async () =
   expect((await parse(metadata({ tests: [] }))).tests).toEqual([]);
 });
 
+test('preserves an unspecified memory limit for JUNGOL problem 502', async () => {
+  const url = 'https://jungol.co.kr/problem/502';
+  const result = await parse(
+    metadata({
+      name: 'JUNGOL_502. 출력 – 자가진단2',
+      url,
+      timeLimit: 1000,
+      memoryLimit: 0,
+      tests: [{ input: '', output: "Programming! It's fun." }],
+      languages: { java: { mainClass: 'Main', taskClass: 'Jungol502' } },
+    }),
+    url,
+  );
+  expect(result).toEqual({
+    ...(metadata().problem as object),
+    name: 'JUNGOL_502. 출력 – 자가진단2',
+    url,
+    timeLimit: 1000,
+    memoryLimit: 0,
+    tests: [{ input: '', output: "Programming! It's fun.\n" }],
+    languages: { java: { mainClass: 'Main', taskClass: 'Jungol502' } },
+    batch: { id: expect.any(String), size: 1 },
+  });
+});
+
 test('compares only the origin and path, then removes navigation parameters', async () => {
   const result = await parse(
     metadata({ url: `${publicUrl}?source=bookmark#statement` }),
@@ -181,6 +206,7 @@ test.each([
   ['zero time limit', { timeLimit: 0 }],
   ['sub-unit time limit', { timeLimit: 0.5 }],
   ['negative memory limit', { memoryLimit: -1 }],
+  ['sub-unit memory limit', { memoryLimit: 0.5 }],
   ['non-numeric limit', { memoryLimit: '128' }],
   ['null limit', { timeLimit: null }],
   ['missing tests', { tests: null }],

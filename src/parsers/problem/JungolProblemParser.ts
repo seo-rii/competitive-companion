@@ -90,7 +90,8 @@ export class JungolProblemParser extends Parser {
       problem.timeLimit < 1 ||
       typeof problem.memoryLimit !== 'number' ||
       !Number.isFinite(problem.memoryLimit) ||
-      problem.memoryLimit < 1
+      // JUNGOL uses zero when no memory limit is specified.
+      (problem.memoryLimit !== 0 && problem.memoryLimit < 1)
     ) {
       throw new Error('Invalid JUNGOL time or memory limit.');
     }
